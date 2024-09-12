@@ -54,6 +54,13 @@ async def logUserBot():
     await client.send_message("@SpamAxl", f'<b>Bot encendido</b>', parse_mode="HTML")
     spammer_group = int("-4522533390")
 
+    @client.on(events.NewMessage)
+    async def my_event_handler(event):
+        sender = await event.get_sender()
+        sender_id = sender.id
+        message = event.message.message
+        await client.send_message(sender_id, "Hola, esta es una cuenta de spam. Si deseas adquirir algun servicio, escríbele a @Axl3023.")
+
     while True:
         groups_info = await getListOfGroups(client)
         messages_list = await getMessagesFromGroup(client, spammer_group)
